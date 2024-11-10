@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="labugo.png">
+
+    <script src="fontawesome/js/all.js"></script>
+<style>
+  body {
+    overflow-x: hidden;
+    margin: 0;
+     :root {
+  --scrollcolor: blue;
+  --scrollbackground: black;
+}
+* {
+  box-sizing: border-box;
+}
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 120vh;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-family: system-ui;
+  line-height: 1.1;
+  font-weight: 300;
+  color: #fff;
+  margin: 4rem auto 1rem;
+  width: 85%;
+  max-width: 1280px;
+}
+.slider {
+  width: 85%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.slider__content {
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  scrollbar-color: var(--scrollcolor) var(--scrollbackground);
+}
+.slider__content::-webkit-scrollbar {
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 1rem;
+  background: var(--scrollbackground);
+}
+.slider__content::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background: var(--scrollcolor);
+}
+.slider__content::-webkit-scrollbar-track {
+  border-radius: 1rem;
+  background: var(--scrollbackground);
+}
+.slider__item {
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-width: 100%;
+  width: 100%;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1;
+}
+@media (min-width: 460px) {
+  .slider__item {
+    aspect-ratio: 0.6666666667;
+    min-width: calc((100% / 2) - 2rem);
+ }
+}
+@media (min-width: 940px) {
+  .slider__item {
+    min-width: calc((100% / 3) - 4rem);
+ }
+}
+.slider__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.slider__info {
+  position: relative;
+  padding: 4rem 2rem 2rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(32, 50, 57, 0));
+}
+.slider__info h2 {
+  color: #fff;
+  font-family: system-ui;
+  line-height: 1.1;
+  font-weight: 300;
+  font-size: 1.75rem;
+  margin: 0;
+}
+.slider__nav {
+  margin: 1rem 0 4rem;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  align-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+@media (min-width: 460px) {
+  .slider__nav {
+    justify-content: flex-end;
+ }
+}
+.slider__nav__button {
+  margin: 0;
+  appearance: none;
+  border: 0;
+  border-radius: 2rem;
+  background: #fff;
+  color: #203239;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  line-height: 1;
+  pointer-events: none;
+  transition: 0.2s ease-out;
+  opacity: 0.25;
+}
+.slider__nav__button--active {
+  opacity: 1;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.wrapper {
+padding-left: 0px;
+  display: inline-flex;
+  list-style: none;
+}
+
+.wrapper .icon {
+  position: relative;
+  background: #ffffff;
+  border-radius:15px;
+  padding: 15px;
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background: #ffffff;
+  color: #ffffff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background: #ffffff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -45px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.wrapper .icon:hover span,
+.wrapper .icon:hover .tooltip {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper .facebook:hover,
+.wrapper .facebook:hover .tooltip,
+.wrapper .facebook:hover .tooltip::before {
+  background: #1877F2;
+  color: #ffffff;
+}
+
+.wrapper .tiktok:hover,
+.wrapper .tiktok:hover .tooltip,
+.wrapper .tiktok:hover .tooltip::before {
+  background: #000000;
+  color: #ffffff;
+}
+
+.wrapper .instagram:hover,
+.wrapper .instagram:hover .tooltip,
+.wrapper .instagram:hover .tooltip::before {
+  background: #7a21b6;
+  color: #ffffff;
+}
+
+.wrapper .youtube:hover,
+.wrapper .youtube:hover .tooltip,
+.wrapper .youtube:hover .tooltip::before {
+  background: #CD201F;
+  color: #ffffff;
+}
+</style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top" style="backdrop-filter: blur(5px); background-size: cover; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);" >
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="#" style="width: 120px">
+    <img src="labugo.png" style= "width: 50px; height: 50px border-radius:50%;"> <h2 class="text-dark" style="font-family: Showcard Gothic ;font-weight: bold;font-size: 20px;">LABUBU</h2>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+     <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+         <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fa-solid fa-images"></i> Home </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html"><i class="fa-solid fa-user"></i> About</a>
+                    </li>                                     
+                    <li class="nav-item">
+                        <a class="nav-link" href="service.html"><i class="fa-solid fa-concierge-bell"></i> Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html"><i class="fa-solid fa-images"></i> Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html"><i class="fa-solid fa-phone"></i> Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="testimonial.html"><i class="fa-solid fa-people-line"></i></i>Testimonials</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="profile.html"><i class="fa-solid fa-circle-user me-2"></i></i>Profile</a>
+                    </li>
+
+                </ul>
+                <span class="navbar-text">
+        <a href="login.html" class="text-decoration-none"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+       
+      </span>
+            </div>
+        </div>
+    </nav>
+
+<div class="row justify-content-center" style="padding-top: 100px;background-image: url(bc.jpg); background-size: cover;">
+  <div class="col-lg-8 text-center my-4">
+    <img src="gall1.jpg" alt="Profile Picture" class="rounded-circle mb-3" style="width: 150px; height: 150px; border: 5px solid white;">
+    <h2 class="text-dark" style="font-family: Copperplate Gothic Bold">D E J A Y  N A O N G</h2>
+    <ul class="wrapper">
+    <li><a href="https://www.facebook.com/popmartglobal?mibextid=LQQJ4d" class="icon facebook text-dark">
+      <span><i class="fab fa-facebook-f"></i></span>
+    </li></a>
+    <li><a href="https://youtube.com/@popmartofficial?si=PY24Pwi94CqznVRa" class="icon youtube text-dark">
+      <span><i class="fab fa-youtube"></i></span>
+    </li></a>
+    <li><a href="https://www.tiktok.com/@popmartglobal?_t=8rGUkjBkq4W&_r=1" class="icon tiktok text-dark">
+      <span><i class="fab fa-tiktok"></i></span>
+    </li></a>
+    <li><a href="https://www.instagram.com/popmart?igsh=bDd5b2pveDBoc3Bh" class="icon instagram text-dark">
+      <span><i class="fab fa-instagram"></i></span>
+    </li></a>
+  </ul>
+    <p class="text-dark" style="font-family: Candara;">A passionate ARTIST who loves to compete, stream, and connect with the community. Follow my journey as I explore the world of LABUBUS .</p>
+    <div class="d-flex justify-content-center">
+      <a href="#" class="btn btn-primary mx-2" style="font-family: Candara;">Edit Profile</a>
+    </div>  
+  </div>
+
+
+  <div class="row justify-content-center p-2">
+    <div class="slider" x-data="{start: true, end: false}" style="padding-top: 150px;">
+    <div class="slider__content" x-ref="slider" x-on:scroll.debounce="$refs.slider.scrollLeft == 0 ? start = true : start = false; Math.abs(($refs.slider.scrollWidth - $refs.slider.offsetWidth) - $refs.slider.scrollLeft) < 5 ? end = true : end = false;">
+      <div class="slider__item">
+        <img class="slider__image" src="p1.jpg" alt="Image">
+        <div class="slider__info">
+          <h2>Web Developer</h2>
+        </div>
+      </div>
+      <div class="slider__item">
+        <img class="slider__image" src="p3.jpg" alt="Image">
+        <div class="slider__info">
+          <h2>Travel</h2>
+        </div>
+      </div>
+      <div class="slider__item">
+        <img class="slider__image" src="p4.jpg" alt="Image">
+        <div class="slider__info">
+          <h2>Profile</h2>
+        </div>
+      </div>
+      <div class="slider__item">
+        <img class="slider__image" src="p5.jpg" alt="Image">
+        <div class="slider__info">
+          <h2>Hobbies</h2>
+        </div>
+      </div>
+      <div class="slider__item">
+        <img class="slider__image" src="p2.jpg" alt="Image">
+        <div class="slider__info">
+          <h2>Happy</h2>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    <div class="slider__nav" style="display: flex;justify-content: center; padding-top: 5px;">
+      <button class="slider__nav__button" x-on:click="$refs.slider.scrollBy({left: $refs.slider.offsetWidth * -1, behavior: 'smooth'});" x-bind:class="start ? '' : 'slider__nav__button--active'">Previous</button>
+      <button class="slider__nav__button" x-on:click="$refs.slider.scrollBy({left: $refs.slider.offsetWidth, behavior: 'smooth'});" x-bind:class="end ? '' : 'slider__nav__button--active'">Next</button>
+    </div>
+  </div>
+    <div class="col-md-4 mt-5 "style = "padding-bottom: 20px;">
+      <div class="card" style="background: url(bg1.jpg);p background-size: cover; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7)">
+        <div class="card-body mx-auto">
+          <h3 style="font-family: Copperplate Gothic Bold;">Basic Information</h3>
+          <div class="d-flex">
+            <p><strong>Full Name:</strong> DEJAY L. NAONG</p>
+          
+          </div>
+          <p><strong>Birthdate:</strong> December 15, 2003</p>
+          <p><strong>Location:</strong> Mati City, Philippines</p>
+          <p><strong>Joined:</strong> November 2, 2024</p> 
+        </div>
+      </div>
+    </div>
+   
+  </div>
+  
+  </div>
+  <div class="container bg-white text-dark " style="margin-top:10px;">
+      <div class="row p-5">
+        
+       
+          <div class="col-md-4"style="padding-left: 30px;">
+          <a href="index.html" class="d-flex align-items-center text-decoration-none text-dark">
+            <img src="labugo.png" style= "width: 50px; height: 50px border-radius:50%;"> <h2 class="text-dark" style="font-family: Showcard Gothic ;font-weight: bold;font-size: 40px;">LABUBU</h2>
+    </a>
+          </a><br>
+          <p><i class="fa-solid fa-building-columns me-2"></i>Davao Oriental State University</p>
+          <p><i class="fa-solid fa-location-dot me-2"></i>Guang-guang, Dahican, City of Mati 8200, Davao Oriental, Philippines</p>
+          <p><i class="fa-solid fa-phone me-2"></i>+639152442555 </p>
+          <p><i class="fa-regular fa-envelope me-2"></i>Email: popmartlabubu@gmail.com</p>
+        </div>
+    
+
+        <div class="col-md-3" style="padding-left: 70px;">
+          <h2 class="text-dark" style="font-family: Showcard Gothic ;font-weight: bold;font-size: 40px; ">Shortcuts</h2><br>
+    </a>
+          <ul>
+            <li><a href="index.html" class="text-dark text-decoration-none">Home</a></li>
+            <li><a href="about.html" class="text-dark text-decoration-none">About Us</a></li>
+            <li><a href="service.html" class="text-dark text-decoration-none">Services</a></li>
+            <li><a href="gallery.html" class="text-dark text-decoration-none">Gallery</a></li>
+            <li><a href="profile.html" class="text-dark text-decoration-none">Profile</a></li>
+            <li><a href="contact.html" class="text-dark text-decoration-none">Contact Us</a></li>
+        </ul>
+        </div>
+      
+         <div class="col-md-3"style="padding-left: 170px;">
+          <h2 class="text-dark" style="font-family: Showcard Gothic ;font-weight: bold;font-size: 40px;">Platforms</h2><br>
+    </a>
+          <p>Join our community for the latest updates!</p>
+          <a href="https://www.facebook.com/popmartglobal?mibextid=LQQJ4d" style="font-size: 26px; margin-right: 20px;"><i class="fab fa-facebook-f text-dark"></i></a>
+          <a href="https://youtube.com/@popmartofficial?si=PY24Pwi94CqznVRa" style="font-size: 26px; margin-right: 20px;"><i class="fab fa-youtube text-dark"></i></a>
+          <a href="https://www.instagram.com/popmart?igsh=bDd5b2pveDBoc3Bh" style="font-size: 26px; margin-right: 20px;"><i class="fab fa-instagram text-dark"></i></a>
+          <a href="#" style="font-size: 26px; margin-right: 20px;"><i class="fa-regular fa-envelope iconX text-dark"></i></a>
+          <a href="https://www.tiktok.com/@popmartglobal?_t=8rGUkjBkq4W&_r=1" style="font-size: 26px;"><i class="fa-brands fa-tiktok text-dark"></i></a>
+        </div>
+        
+      <div class="row justify-content-center" style="margin-top:0px;">
+        <div class="col-md-5 text-center p-4 text-dark">
+          <div class="m-auto bg-light" style="width:auto; padding: 2px;"></div><br>
+          <h6 class ="text-dark"style="font-family: Copperplate ;"> <i class="fa-regular fa-copyright text-dark"></i> Copyright <b>  IT2F property</b> All Right Reserved</h6><br>
+    <p class ="text-dark"style="font-family: Copperplate ;"> Designed by <a href ="" class="
+      text-decoration-none">Dejay Naong</a></p>
+        </div>
+      </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

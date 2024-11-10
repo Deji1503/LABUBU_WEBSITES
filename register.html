@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="FONT AWESOME/fontawesome/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+
+      <nav class="navbar navbar-expand-lg fixed-top" style="backdrop-filter: blur(10px); background-size: cover; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);" >
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="#" style="width: 120px">
+    <img src="labugo.png" style= "width: 50px; height: 50px border-radius:50%;"> <h2 class="text-dark" style="font-family: Showcard Gothic ;font-weight: bold;font-size: 20px; padding-top: 10px;">LABUBU</h2>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+         <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fa-solid fa-images"></i> Home </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html"><i class="fa-solid fa-user"></i> About</a>
+                    </li>                                     
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html"><i class="fa-solid fa-concierge-bell"></i> Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html"><i class="fa-solid fa-images"></i> Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="contact.html"><i class="fa-solid fa-phone"></i> Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="testimonals.html"><i class="fa-solid fa-people-line"></i></i>Testimonals</a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+        <a href="logout.html" class="text-decoration-none"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+       
+      </span>
+            </div>
+        </div>
+    </nav>
+
+    <style>
+        body {
+
+            padding-top: 0px;
+        	background: linear-gradient(20deg, black, orange);
+            display: flex;
+            justify-content: center;
+            font-family: Arial;
+        }
+         
+          .info p {
+        	color: white;
+
+        }
+          .info option
+          .info input {
+            background-color: darkslategray;
+        }
+          .info {
+            background-color: black;
+            width: 500px;
+            padding: 20px;
+            border-radius: 10px;
+            
+        }
+        #header {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;    
+            margin: 0;
+            border: 0;
+        }
+        .details {
+            margin: 20px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            padding: 10px;
+            width: 100%;
+            max-width: 500px;
+            box-sizing: border-box;
+            border-radius: 10px; 
+        }
+        select {
+        	color: gray;
+        	background-color: darkslategray;
+            padding: 10px;
+            width: 100%;
+            max-width: 500px;
+            box-sizing: border-box;
+            border-radius: 10px; 
+        }
+
+        
+        .details input[type="date"]{
+        	color: gray;
+        }
+
+        
+
+        #buttoninfo{
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            margin: 20px 0 10px 230px;
+        
+        }
+        button {
+            font-family: Arial;
+            border-radius: 10px;
+            padding: 10px 20px;
+            margin: 0 10px;
+        }
+        #submit{
+            background-color: orange;
+        }
+        #cancel{
+            background-color: orange;
+        }
+        #submit:hover{
+            background-color: gray;
+        }
+        #cancel:hover {
+            background-color: red;
+        }
+        .details label{
+            color: white;
+        }
+        .details input{
+        	background-color: darkslategray;
+        }
+        .details option{
+
+        	color: black;
+        	background-color: darkslategray;
+        }
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+           
+
+    </style>
+</head>
+<body>
+<div class="info">
+    <div id="header">  
+    </div>
+    <img src="rp.png"alt="Centered Image" class="center" width="200" height="200" style="border-radius:50%; padding: 0px;">
+    <p style="font-family: Arial; font-weight: bold; font-size: 25px; text-align: center;" >Account Registration</p>
+    <form>
+
+        <div class="details">
+            <label>Enter First Name</label>
+            <input type="text" placeholder="First Name" required>
+        </div>
+        <div class="details">
+            <label>Enter Middle Name</label>
+            <input type="text" placeholder="Middle Name" required>
+        </div>
+        <div class="details">
+            <label>Enter Last Name</label>
+            <input type="text" placeholder="Last Name" required>
+        </div>
+        <div class="details">
+            <label>Suffix</label>
+            <select required>
+            <option value="">Select Suffix</option>
+            <option value="None">None</option>
+            <option value="Jr.">Jr.</option>
+            <option value="Sr.">Sr.</option>
+            <option value="II">II</option>
+            <option value="III">III</option>
+            <option value="IV">IV</option>
+    </select>
+        </div>
+         <div class="details">
+            <label>Enter Birthdate</label>
+            <input type="date" required>
+        </div>
+        <div class="details">
+            <label>Email Address</label>
+            <input type="email" placeholder="Email" required>
+        </div>
+
+        <div class="details">
+            <label>Enter Username</label>
+            <input type="password" placeholder="Password" required>
+        </div>
+        <div class="details">
+            <label>Enter Password</label>
+            <input type="password" placeholder="Password" required>
+        </div>
+        <div class="details">
+            <label>Confirm Password</label>
+            <input type="password" placeholder="Confirm Password" required>
+        </div>
+        <div id="buttoninfo">
+        <button style="font-family: Arial; "type="submit" id="submit" >Submit</button>
+        <button type="reset" id="cancel" >Cancel</button>
+    </div>
+    </form>
+</div>
+</body>
+</html>
